@@ -2,13 +2,29 @@
 
 console.log("Before");
 
-getUser(1, (user) => {
-  getRepositories(user.gitHubUserName, (repositories) => {
-    getCommits(repositories[0], (commits) => {
-      console.log(commits);
-    });
-  });
-});
+// getUser(1, (user) => {
+//   getRepositories(user.gitHubUserName, (repositories) => {
+//     getCommits(repositories[0], (commits) => {
+//       console.log(commits);
+//     });
+//   });
+// });
+
+/*
+// getUser fonksiyonu bir promise dönüyor
+const p = getUser(1);
+// kontrol amaçlı user değişkenine, resolve değeri olarak aldığımız objeyi konsola yazdırdık.
+p.then((user) => console.log(user));
+//getUser(1).then((user) => console.log(user)); // şeklinde de yazılabilir. (kullanılan bu)
+*/
+
+getUser(1).then((user) =>
+  getRepositories(user.gitHubUserName).then((repositories) =>
+    getCommits(repositories[0]).then((commits) =>
+      console.log("All commits:", commits)
+    )
+  )
+);
 
 console.log("After");
 
