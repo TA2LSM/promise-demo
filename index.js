@@ -18,13 +18,14 @@ p.then((user) => console.log(user));
 //getUser(1).then((user) => console.log(user)); // şeklinde de yazılabilir. (kullanılan bu)
 */
 
-getUser(1).then((user) =>
-  getRepositories(user.gitHubUserName).then((repositories) =>
-    getCommits(repositories[0]).then((commits) =>
-      console.log("All commits:", commits)
+getUser(1)
+  .then((user) =>
+    getRepositories(user.gitHubUserName).then((repositories) =>
+      getCommits(repositories[0]).then((commits) => console.log("All commits:", commits))
     )
   )
-);
+  .catch((err) => console.log("Error:", err.message));
+// buradaki catch yukarıdaki async işlemlerden herhangi birinde sıkıntı olursa çalışacak.
 
 console.log("After");
 
@@ -52,6 +53,6 @@ function getCommits(repo) {
     setTimeout(() => {
       console.log("Reading commits from GitHub...");
       resolve(["commit"]);
-    });
+    }, 2000);
   });
 }
