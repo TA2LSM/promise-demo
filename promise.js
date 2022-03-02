@@ -1,4 +1,5 @@
 // --- 02.03.2022 ---
+// Video 06 kısmıyla ilgili koddur.
 // Promise bir objedir. Async bir olayın sonucunu tutar. Yaratılır yaratılmaz "pending"
 // state oalrak çalışır. Hata olursa "rejected", olumlu çözümlenirse "resolve (fulfilled)"
 // duruma geçer.
